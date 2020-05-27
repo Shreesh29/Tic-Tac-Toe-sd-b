@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
            ui->label_8->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
            ui->label_9->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
 
-           QObject::connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(set1()) );
+           QObject::connect(ui->radioButton, SIGNAL(pressed()), this, SLOT(set1()) );
 
 
 }
