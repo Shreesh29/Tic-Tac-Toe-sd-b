@@ -12,14 +12,19 @@ MainWindow::MainWindow(QWidget *parent)
 
      ui->label_2->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
       ui->label_3->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
-       ui->label_4->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
-        ui->label_5->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
+       ui->label_4->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/image.png"));
+        ui->label_5->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/image.png"));
          ui->label_6->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
           ui->label_7->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
            ui->label_8->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
            ui->label_9->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
 
-           QObject::connect(ui->radioButton, SIGNAL(pressed()), this, SLOT(set1()) );
+
+           //UI
+           ui->label_20->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/X.png"));
+           ui->label_21->setPixmap(QPixmap("/Users/shreeshagarwal/Desktop/image.png"));
+
+           QObject::connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(set1()) );
 
 
 }
