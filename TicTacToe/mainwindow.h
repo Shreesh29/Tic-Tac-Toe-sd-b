@@ -17,9 +17,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    bool winning_system();
+
 public slots:
 
     void set1();
+    void set2();
+    void set3();
+    void set4();
+    void set5();
+    void set6();
+    void set7();
+    void set8();
+    void set9();
     void game_start();
     void start_turn();
 
@@ -33,6 +43,9 @@ private:
 
     char turn_system;
 
+    std::vector<bool> no_win;
+
+    bool win;
 
 
 

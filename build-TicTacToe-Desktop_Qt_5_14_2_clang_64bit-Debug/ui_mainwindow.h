@@ -36,7 +36,6 @@ public:
     QLabel *label_7;
     QLabel *label_8;
     QLabel *label_9;
-    QPushButton *pushButton;
     QFrame *line;
     QFrame *line_2;
     QFrame *line_3;
@@ -62,11 +61,12 @@ public:
     QLabel *label_22;
     QPushButton *start_game;
     QLabel *turn;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_20;
     QSpacerItem *horizontalSpacer;
     QLabel *label_21;
+    QLabel *label_10;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -104,9 +104,6 @@ public:
         label_9 = new QLabel(centralwidget);
         label_9->setObjectName(QString::fromUtf8("label_9"));
         label_9->setGeometry(QRect(610, 320, 131, 81));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(160, 10, 112, 32));
         line = new QFrame(centralwidget);
         line->setObjectName(QString::fromUtf8("line"));
         line->setGeometry(QRect(410, 130, 61, 271));
@@ -162,47 +159,47 @@ public:
         label_19->setGeometry(QRect(700, 380, 58, 16));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(90, 210, 71, 31));
+        pushButton_2->setGeometry(QRect(110, 250, 71, 31));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(170, 210, 71, 31));
+        pushButton_3->setGeometry(QRect(190, 250, 71, 31));
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(90, 250, 71, 31));
+        pushButton_4->setGeometry(QRect(110, 290, 71, 31));
         pushButton_5 = new QPushButton(centralwidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(170, 250, 71, 31));
+        pushButton_5->setGeometry(QRect(190, 290, 71, 31));
         pushButton_6 = new QPushButton(centralwidget);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(90, 290, 71, 31));
+        pushButton_6->setGeometry(QRect(110, 330, 71, 31));
         pushButton_7 = new QPushButton(centralwidget);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(170, 290, 71, 31));
+        pushButton_7->setGeometry(QRect(190, 330, 71, 31));
         pushButton_8 = new QPushButton(centralwidget);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(90, 330, 71, 31));
+        pushButton_8->setGeometry(QRect(110, 370, 71, 31));
         pushButton_9 = new QPushButton(centralwidget);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setGeometry(QRect(170, 330, 71, 31));
+        pushButton_9->setGeometry(QRect(190, 370, 71, 31));
         pushButton_10 = new QPushButton(centralwidget);
         pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(130, 370, 71, 31));
+        pushButton_10->setGeometry(QRect(150, 410, 71, 31));
         label_22 = new QLabel(centralwidget);
         label_22->setObjectName(QString::fromUtf8("label_22"));
-        label_22->setGeometry(QRect(140, 180, 31, 16));
+        label_22->setGeometry(QRect(150, 200, 31, 16));
         start_game = new QPushButton(centralwidget);
         start_game->setObjectName(QString::fromUtf8("start_game"));
-        start_game->setGeometry(QRect(340, 20, 112, 32));
+        start_game->setGeometry(QRect(260, 20, 341, 61));
         turn = new QLabel(centralwidget);
         turn->setObjectName(QString::fromUtf8("turn"));
-        turn->setGeometry(QRect(180, 180, 91, 16));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(80, 90, 191, 81));
-        horizontalLayout = new QHBoxLayout(widget);
+        turn->setGeometry(QRect(190, 200, 91, 16));
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(90, 110, 191, 81));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_20 = new QLabel(widget);
+        label_20 = new QLabel(layoutWidget);
         label_20->setObjectName(QString::fromUtf8("label_20"));
 
         horizontalLayout->addWidget(label_20);
@@ -211,11 +208,14 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        label_21 = new QLabel(widget);
+        label_21 = new QLabel(layoutWidget);
         label_21->setObjectName(QString::fromUtf8("label_21"));
 
         horizontalLayout->addWidget(label_21);
 
+        label_10 = new QLabel(centralwidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setGeometry(QRect(130, 220, 161, 20));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -242,7 +242,6 @@ public:
         label_7->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
@@ -266,6 +265,7 @@ public:
         turn->setText(QCoreApplication::translate("MainWindow", "Click on Start", nullptr));
         label_20->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_21->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_10->setText(QString());
     } // retranslateUi
 
 };
