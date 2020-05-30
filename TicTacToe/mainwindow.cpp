@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <unordered_set>
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
      //UI
      ui->label_20->setPixmap(QPixmap(":/X.png"));
      ui->label_21->setPixmap(QPixmap(":/image.png"));
+     ui->label_23->setPixmap(QPixmap(":/Title.png"));
 
 
      // START GAME CONNECTION:
@@ -125,6 +127,7 @@ void MainWindow::check_win() { // activated when turn_count reaches turn threshh
     winning_system();
 }
 
+// Display Winner
 void MainWindow::winner() {
 if (turn_system == 'X') {
   ui->winner->setText("O WON! RESTART GAME TO PLAY AGAIN");
