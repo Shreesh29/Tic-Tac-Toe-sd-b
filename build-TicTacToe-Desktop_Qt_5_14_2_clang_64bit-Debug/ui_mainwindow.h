@@ -92,7 +92,7 @@ public:
 "color: white;"));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(610, 130, 131, 81));
+        label_3->setGeometry(QRect(620, 130, 131, 81));
         label_3->setStyleSheet(QString::fromUtf8("font: bold;\n"
 "color: white;\n"
 ""));
@@ -108,7 +108,7 @@ public:
 "color: white;"));
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(610, 220, 131, 81));
+        label_6->setGeometry(QRect(620, 220, 131, 81));
         label_6->setStyleSheet(QString::fromUtf8("font: bold;\n"
 "color: white;\n"
 ""));
@@ -124,7 +124,7 @@ public:
 "color: white;"));
         label_9 = new QLabel(centralwidget);
         label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(610, 320, 131, 81));
+        label_9->setGeometry(QRect(620, 320, 131, 81));
         label_9->setStyleSheet(QString::fromUtf8("font: bold;\n"
 "color: white;\n"
 ""));

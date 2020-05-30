@@ -84,12 +84,14 @@ void MainWindow::winning_system() { // to check for any winner
     if( (game_board[i][0]==game_board[i][1] && game_board[i][1] == game_board[i][2] && game_board[i][0] == 'X') || (game_board[i][0]==game_board[i][1] && game_board[i][1] == game_board[i][2] && game_board[i][0] == 'O') ) {
     win = true;
     emit set_win();
+    return;
        }
 
       // for column wins
-    if( (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'X') || (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'O') ) {
+    else if( (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'X') || (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'O') ) {
     win = true;
     emit set_win();
+    return;
        }
    }
 
@@ -97,17 +99,19 @@ void MainWindow::winning_system() { // to check for any winner
     if( (game_board[0][0] == game_board[1][1] && game_board[0][0] == game_board[2][2] && game_board[0][0] == 'X') || (game_board[0][0] == game_board[1][1] && game_board[0][0] == game_board[2][2] && game_board[0][0] == 'O')) {
     win = true;
     emit set_win();
+    return;
        }
 
-    if ( (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'X') || (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'O')) {
+    else if ( (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'X') || (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'O')) {
     win = true;
     emit set_win();
+    return;
         }
 
-    if (areDistinct(no_win)) { //to check for tie
-    std::cout << "Elements are Distinct";
+    else if (areDistinct(no_win)) { //to check for tie
     tie = true;
     emit set_tie();
+    return;
         }
     }
 
@@ -130,15 +134,15 @@ void MainWindow::check_win() { // activated when turn_count reaches turn threshh
 // Display Winner
 void MainWindow::winner() {
 if (turn_system == 'X') {
-  ui->winner->setText("O WON! RESTART GAME TO PLAY AGAIN");
+  ui->winner->setText("O WON! RESTART GAME TO PLAY AGAIN.");
     }
 if (turn_system == 'O') {
-  ui->winner->setText("X WON! RESTART GAME TO PLAY AGAIN");
+  ui->winner->setText("X WON! RESTART GAME TO PLAY AGAIN.");
     }
 }
 
 void MainWindow::tie_game() {
-   ui->winner->setText("IT IS A TIE! RESTART GAME TO PLAY AGAIN");
+   ui->winner->setText("IT IS A TIE! RESTART GAME TO PLAY AGAIN.");
 }
 
 
@@ -166,7 +170,7 @@ void MainWindow::set1() {
     ui->pushButton_2->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -193,7 +197,7 @@ void MainWindow::set2() {
     ui->pushButton_3->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -220,7 +224,7 @@ void MainWindow::set3() {
     ui->pushButton_4->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -247,7 +251,7 @@ void MainWindow::set4(){
     ui->pushButton_5->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -274,7 +278,7 @@ void MainWindow::set5(){
     ui->pushButton_6->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -301,7 +305,7 @@ void MainWindow::set6(){
     ui->pushButton_7->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -328,7 +332,7 @@ void MainWindow::set7(){
     ui->pushButton_8->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -355,7 +359,7 @@ void MainWindow::set8(){
     ui->pushButton_9->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
@@ -382,7 +386,7 @@ void MainWindow::set9(){
     ui->pushButton_10->hide();
     ++turn_count;
     }
-    if (turn_count >= 4) {
+    if (turn_count >= 5) {
         emit turn_threshhold();
        }
 }
