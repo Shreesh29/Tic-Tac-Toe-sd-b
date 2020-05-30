@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <unordered_set>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -21,24 +21,26 @@ MainWindow::MainWindow(QWidget *parent)
     // for no_win
     no_win.reserve(9); // set size to 9
     for ( size_t i = 0; i < 9; i++) {
-         no_win[i] = false;
+         no_win.push_back(0);
+         std::cout<< no_win[i] << std::endl; //testing
     }
 
     turn_system = 'A'; // default starting turn is set to A. On starting game, the turn is set to 'X'
-
-     win = false;
+    win = false;
+    tie = false;
+    turn_count = 0;
 
 
      //UI
      ui->label_20->setPixmap(QPixmap(":/X.png"));
      ui->label_21->setPixmap(QPixmap(":/image.png"));
 
+
      // START GAME CONNECTION:
      QObject::connect(ui->start_game, SIGNAL(clicked()), this, SLOT(game_start()) );
 
      // SET TURN CONNECTION
      QObject::connect(this, SIGNAL(set_turn()), this, SLOT(start_turn()) );
-
 
      // BUTTON PRESS CONNECTIONS TO PLAY TURN:
      QObject::connect(ui->pushButton_2, SIGNAL(pressed()), this, SLOT(set1()) );
@@ -51,10 +53,67 @@ MainWindow::MainWindow(QWidget *parent)
      QObject::connect(ui->pushButton_9, SIGNAL(pressed()), this, SLOT(set8()) );
      QObject::connect(ui->pushButton_10, SIGNAL(pressed()), this, SLOT(set9()) );
 
+
+     // WINNING AND TIE CONNECTIONS
+    // QObject::connect(this, SIGNAL(turn_threshhold()), this, SLOT(check_win()) );
+     QObject::connect(this, SIGNAL(set_win()), this, SLOT(winner()) );
+     QObject::connect(this, SIGNAL(set_tie()), this, SLOT(tie_game()) );
+
 }
 
+// DEFINITIONS
 
-// SLOT DEFINITIONS
+bool MainWindow::areDistinct(std::vector<int> arr) { // helper function used in winning_system to help determine ties
+        int n = arr.size();
+
+        std::unordered_set<int> s;
+        for (int i = 0; i < n; i++) {
+            s.insert(arr[i]);
+        }
+
+        // If all the elements are distinct then size of the set should be of array
+        return (s.size() == arr.size());
+}
+
+void MainWindow::winning_system() { // to check for any winner
+
+    for(int i=0; i<3; i++) {
+    // for row wins
+    if( (game_board[i][0]==game_board[i][1] && game_board[i][1] == game_board[i][2] && game_board[i][0] == 'X') || (game_board[i][0]==game_board[i][1] && game_board[i][1] == game_board[i][2] && game_board[i][0] == 'O') ) {
+    win = true;
+    emit set_win();
+    return;
+       }
+
+      // for column wins
+    if( (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'X') || (game_board[0][i]==game_board[1][i] && game_board[1][i] == game_board[2][i] && game_board[0][i] == 'O') ) {
+    win = true;
+    emit set_win();
+    return;
+       }
+   }
+
+    // for diagonal wins
+    if( (game_board[0][0] == game_board[1][1] && game_board[0][0] == game_board[2][2] && game_board[0][0] == 'X') || (game_board[0][0] == game_board[1][1] && game_board[0][0] == game_board[2][2] && game_board[0][0] == 'O')) {
+    win = true;
+    emit set_win();
+    return;
+       }
+
+    if ( (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'X') || (game_board[0][2] == game_board[1][1] && game_board[0][2] == game_board[2][0] && game_board[0][2] == 'O')) {
+    win = true;
+    emit set_win();
+    return;
+        }
+
+    if (areDistinct(no_win)) { //to check for tie
+    std::cout << "Elements are Distinct";
+    tie = true;
+    emit set_tie();
+    return;
+        }
+    }
+
 
 void MainWindow::start_turn() {
     ui->turn->setText(QString(turn_system));
@@ -67,11 +126,23 @@ void MainWindow::game_start() {
     ui->start_game->hide();
 }
 
-bool MainWindow::winning_system() { // to check for any winner
+void MainWindow::check_win() { // activated when turn_count reaches turn threshhold
+    winning_system();
+}
 
+void MainWindow::winner() {
+if (turn_system == 'X') {
+  ui->winner->setText("O WON! RESTART GAME TO PLAY AGAIN");
+  return;
+    }
+if (turn_system == 'O') {
+  ui->winner->setText("X WON! RESTART GAME TO PLAY AGAIN");
+  return;
+    }
+}
 
-
-
+void MainWindow::tie_game() {
+   ui->winner->setText("IT IS A TIE! RESTART GAME TO PLAY AGAIN");
 }
 
 
@@ -84,8 +155,9 @@ void MainWindow::set1() {
     emit set_turn();
     //3
     game_board[0][0] = 'X';
-    no_win[0] = true;
+    no_win[0] = 1;
     ui->pushButton_2->hide();
+     ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -94,9 +166,13 @@ void MainWindow::set1() {
     emit set_turn();
     //3
     game_board[0][0] = 'O';
-    no_win[0] = true;
+    no_win[0] = 1;
     ui->pushButton_2->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set2() {
@@ -106,8 +182,9 @@ void MainWindow::set2() {
     emit set_turn();
     //3
     game_board[1][0] = 'X';
-    no_win[1] = true;
+    no_win[1] = 2;
     ui->pushButton_3->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -116,9 +193,13 @@ void MainWindow::set2() {
     emit set_turn();
     //3
     game_board[1][0] = 'O';
-    no_win[1] = true;
+    no_win[1] = 2;
     ui->pushButton_3->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set3() {
@@ -128,8 +209,9 @@ void MainWindow::set3() {
     emit set_turn();
     //3
     game_board[2][0] = 'X';
-    no_win[2] = true;
+    no_win[2] = 3;
     ui->pushButton_4->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -138,9 +220,13 @@ void MainWindow::set3() {
     emit set_turn();
     //3
     game_board[2][0] = 'O';
-    no_win[2] = true;
+    no_win[2] = 3;
     ui->pushButton_4->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set4(){
@@ -150,8 +236,9 @@ void MainWindow::set4(){
     emit set_turn();
     //3
     game_board[0][1] = 'X';
-    no_win[3] = true;
+    no_win[3] = 4;
     ui->pushButton_5->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -160,9 +247,13 @@ void MainWindow::set4(){
     emit set_turn();
     //3
     game_board[0][1] = 'O';
-    no_win[3] = true;
+    no_win[3] = 4;
     ui->pushButton_5->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set5(){
@@ -172,8 +263,9 @@ void MainWindow::set5(){
     emit set_turn();
     //3
     game_board[1][1] = 'X';
-    no_win[4] = true;
+    no_win[4] = 5;
     ui->pushButton_6->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -182,9 +274,13 @@ void MainWindow::set5(){
     emit set_turn();
     //3
     game_board[1][1] = 'O';
-    no_win[4] = true;
+    no_win[4] = 5;
     ui->pushButton_6->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set6(){
@@ -194,8 +290,9 @@ void MainWindow::set6(){
     emit set_turn();
     //3
     game_board[2][1] = 'X';
-    no_win[5] = true;
+    no_win[5] = 6;
     ui->pushButton_7->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -204,9 +301,13 @@ void MainWindow::set6(){
     emit set_turn();
     //3
     game_board[2][1] = 'O';
-    no_win[5] = true;
+    no_win[5] = 6;
     ui->pushButton_7->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set7(){
@@ -216,8 +317,9 @@ void MainWindow::set7(){
     emit set_turn();
     //3
     game_board[0][2] = 'X';
-    no_win[6] = true;
+    no_win[6] = 7;
     ui->pushButton_8->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -226,9 +328,13 @@ void MainWindow::set7(){
     emit set_turn();
     //3
     game_board[0][2] = 'O';
-    no_win[6] = true;
+    no_win[6] = 7;
     ui->pushButton_8->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set8(){
@@ -238,8 +344,9 @@ void MainWindow::set8(){
     emit set_turn();
     //3
     game_board[1][2] = 'X';
-    no_win[7] = true;
+    no_win[7] = 8;
     ui->pushButton_9->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -248,9 +355,13 @@ void MainWindow::set8(){
     emit set_turn();
     //3
     game_board[1][2] = 'O';
-    no_win[7] = true;
+    no_win[7] = 8;
     ui->pushButton_9->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 void MainWindow::set9(){
@@ -260,8 +371,9 @@ void MainWindow::set9(){
     emit set_turn();
     //3
     game_board[2][2] = 'X';
-    no_win[8] = true;
+    no_win[8] = 9;
     ui->pushButton_10->hide();
+    ++turn_count;
     }
 
     else if (turn_system == 'O') {
@@ -270,9 +382,13 @@ void MainWindow::set9(){
     emit set_turn();
     //3
     game_board[2][2] = 'O';
-    no_win[8] = true;
+    no_win[8] = 9;
     ui->pushButton_10->hide();
+    ++turn_count;
     }
+    if (turn_count >= 5) {
+        emit turn_threshhold();
+       }
 }
 
 MainWindow::~MainWindow()

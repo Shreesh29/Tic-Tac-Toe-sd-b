@@ -67,6 +67,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QLabel *label_21;
     QLabel *label_10;
+    QLabel *winner;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -189,7 +190,7 @@ public:
         label_22->setGeometry(QRect(150, 200, 31, 16));
         start_game = new QPushButton(centralwidget);
         start_game->setObjectName(QString::fromUtf8("start_game"));
-        start_game->setGeometry(QRect(260, 20, 341, 61));
+        start_game->setGeometry(QRect(290, 30, 291, 61));
         turn = new QLabel(centralwidget);
         turn->setObjectName(QString::fromUtf8("turn"));
         turn->setGeometry(QRect(190, 200, 91, 16));
@@ -216,6 +217,9 @@ public:
         label_10 = new QLabel(centralwidget);
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setGeometry(QRect(130, 220, 161, 20));
+        winner = new QLabel(centralwidget);
+        winner->setObjectName(QString::fromUtf8("winner"));
+        winner->setGeometry(QRect(270, 450, 331, 51));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -266,6 +270,7 @@ public:
         label_20->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_21->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_10->setText(QString());
+        winner->setText(QString());
     } // retranslateUi
 
 };

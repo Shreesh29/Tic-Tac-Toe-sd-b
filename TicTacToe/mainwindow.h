@@ -17,7 +17,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    bool winning_system();
+    void winning_system();
+
+    bool areDistinct(std::vector<int> arr);
+
 
 public slots:
 
@@ -32,9 +35,15 @@ public slots:
     void set9();
     void game_start();
     void start_turn();
+    void check_win();
+    void winner();
+    void tie_game();
 
 signals:
     void set_turn();
+    void turn_threshhold();
+    void set_win();
+    void set_tie();
 
 private:
     Ui::MainWindow *ui;
@@ -43,11 +52,12 @@ private:
 
     char turn_system;
 
-    std::vector<bool> no_win;
+    std::vector<int> no_win;
 
     bool win;
 
+    bool tie;
 
-
+    int turn_count;
 };
 #endif // MAINWINDOW_H
