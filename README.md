@@ -1,7 +1,7 @@
 # Tic-Tac-Toe-sd-b
 A TicTacToe game on Qt Creator
 
-SEE THE GAME WORK ON YOUTUBE: https://www.youtube.com/watch?v=O7tuHf5Pprc
+SEE THE GAME WORK ON YOUTUBE on my channel: https://www.youtube.com/watch?v=O7tuHf5Pprc
 
 BEFORE THE JOURNEY:
 Before beginning development of the game, I had a huge problem of Qt git giving errors on committing and pushing to my remote repository. I searched online, there were only a few videos detailing a solution but all of them were for very old version and didnt exactly match my problem. 
