@@ -1,6 +1,8 @@
 # Tic-Tac-Toe-sd-b
 A TicTacToe game on Qt Creator
 
+SEE THE GAME WORK ON YOUTUBE on my channel: https://www.youtube.com/watch?v=O7tuHf5Pprc
+
 BEFORE THE JOURNEY:
 Before beginning development of the game, I had a huge problem of Qt git giving errors on committing and pushing to my remote repository. I searched online, there were only a few videos detailing a solution but all of them were for very old version and didnt exactly match my problem. 
 I spent three hours trying to solve it on my own. It finally got solved my when I created a repository through terminal on my desktop folder. Through terminal, I pulled and pushed the remote repository. After that I stored the Qt program in that folder. Now, when I committed and pushed through Qt, it worked!
