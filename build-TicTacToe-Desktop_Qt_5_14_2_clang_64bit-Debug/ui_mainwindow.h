@@ -77,7 +77,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/Background.jpg);"));
+        MainWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/img/Background.jpg)"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -276,7 +276,7 @@ public:
         start_game->setGeometry(QRect(90, 40, 191, 61));
         start_game->setStyleSheet(QString::fromUtf8("\n"
 "color:white;\n"
-"font: 75 18pt \"Chalkboard SE\";"));
+"font: 75 27pt \"Chalkboard SE\";"));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(90, 110, 191, 81));
@@ -314,7 +314,8 @@ public:
 "color: white;"));
         label_23 = new QLabel(centralwidget);
         label_23->setObjectName(QString::fromUtf8("label_23"));
-        label_23->setGeometry(QRect(370, 20, 461, 81));
+        label_23->setGeometry(QRect(380, 20, 291, 81));
+        label_23->setStyleSheet(QString::fromUtf8("background-image: url(:/img/Title.png)"));
         MainWindow->setCentralWidget(centralwidget);
         label_6->raise();
         label_9->raise();
@@ -404,7 +405,7 @@ public:
         label_10->setText(QString());
         winner->setText(QString());
         turn->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Click on Start</span></p></body></html>", nullptr));
-        label_23->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_23->setText(QString());
     } // retranslateUi
 
 };

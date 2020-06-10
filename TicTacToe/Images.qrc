@@ -2,8 +2,5 @@
     <qresource prefix="/">
         <file>image.png</file>
         <file>X.png</file>
-        <file>../../Title.png</file>
-        <file>../../background2.jpg</file>
-        <file>../../Background.jpg</file>
     </qresource>
 </RCC>
